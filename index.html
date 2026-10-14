@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rapid Career Employment Agency</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap">
+<style>
+/* Layout: executive recruitment brand. Midnight hero with a live "placement desk" of floating candidate cards, a sector marquee, editorial job rows, a dark employer band, a kanban dashboard in a browser frame, and a gold closing call. One deliberate look, light body with night bands. */
+:root{
+  --night:#0a1330; --night-2:#101c46; --night-3:#18275c;
+  --gold:#e2ad45; --gold-2:#f6d793; --gold-ink:#2b1d00;
+  --paper:#f6f7fb; --white:#ffffff; --ink:#0d1431; --muted:#5a6383; --line:#e3e6f0; --line-night:rgba(255,255,255,.12);
+  --royal:#2b49c9; --royal-soft:#e6ebfc;
+  --ok:#1c8a5a; --ok-soft:#dcf3e8; --amber:#a96a00; --amber-soft:#fcefd2; --sky:#2a63d8; --sky-soft:#e2ebff;
+  --f-display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --f-body:"Geist", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"Geist Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{margin:0;line-height:1.05;text-wrap:balance;font-weight:600;letter-spacing:-.02em}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+.serif{font-family:var(--f-display);font-weight:400;letter-spacing:-.01em}
+.serif i,.serif em{font-style:italic}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.kicker::before{content:"";width:22px;height:1.5px;background:currentColor;opacity:.7}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.02em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:14px 24px;font-weight:600;font-size:.97rem;cursor:pointer;transition:transform .2s, box-shadow .2s, background .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--gold-ink);box-shadow:0 10px 30px -10px rgba(226,173,69,.7)}
+.btn-night{background:var(--night);color:#fff}
+.btn-line{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.28)}
+.btn-line:hover{background:rgba(255,255,255,.08)}
+.btn-ink-line{background:var(--white);color:var(--ink);border:1px solid var(--line)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* preview ribbon */
+.ribbon{background:var(--gold);color:var(--gold-ink);font-size:.8rem;font-weight:500;text-align:center}
+.ribbon .wrap{padding-block:8px}
+
+/* header */
+.nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:40;transition:background .3s, box-shadow .3s}
+.nav.solid{background:rgba(10,19,48,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-night)}
+.nav .wrap{display:flex;align-items:center;gap:28px;padding-block:16px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand-mark{width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,var(--gold-2),var(--gold));display:grid;place-items:center;color:var(--gold-ink);font-family:var(--f-display);font-size:1.45rem;font-style:italic;line-height:1}
+.brand b{display:block;font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+.brand small{display:block;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.nav-links{display:flex;gap:26px;margin-left:auto;font-size:.93rem;color:rgba(255,255,255,.72)}
+.nav-links a:hover{color:#fff}
+.nav .btn{padding:11px 20px;font-size:.9rem}
+@media (max-width:900px){.nav-links{display:none}.nav .btn{margin-left:auto}}
+@media (max-width:420px){.nav .btn-line{display:none}}
+
+/* hero */
+.hero{position:relative;background:var(--night);color:#fff;margin-top:-73px;padding-top:73px;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:
+  radial-gradient(60% 60% at 85% 20%, rgba(43,73,201,.55), transparent 70%),
+  radial-gradient(40% 50% at 10% 90%, rgba(226,173,69,.18), transparent 70%),
+  linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.35;background-image:linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 60% 40%, #000 30%, transparent 80%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding-block:64px 88px}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:48px;padding-block:44px 64px}}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line-night);font-size:.84rem;color:rgba(255,255,255,.85)}
+.pill b{background:var(--gold);color:var(--gold-ink);border-radius:999px;padding:2px 10px;font-size:.75rem;font-weight:700}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(3rem, 7.4vw, 5.9rem);line-height:.96;letter-spacing:-.025em;margin-top:22px}
+.hero h1 em{font-style:italic;background:linear-gradient(120deg,var(--gold-2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+.hero .lede{margin-top:22px;font-size:1.13rem;color:rgba(255,255,255,.72);max-width:50ch}
+
+.switch{margin-top:30px;display:inline-grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,.06);border:1px solid var(--line-night);border-radius:999px;padding:5px;position:relative}
+.switch button{position:relative;z-index:1;border:0;background:transparent;color:rgba(255,255,255,.7);padding:10px 20px;border-radius:999px;font-weight:600;font-size:.92rem;cursor:pointer;transition:color .25s}
+.switch button[aria-selected="true"]{color:var(--gold-ink)}
+.switch .thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:999px;background:linear-gradient(135deg,var(--gold-2),var(--gold));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.switch[data-mode="hire"] .thumb{transform:translateX(100%)}
+.panel{margin-top:16px;background:rgba(255,255,255,.98);color:var(--ink);border-radius:20px;padding:8px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);display:grid;grid-template-columns:1.3fr 1fr auto;gap:4px;align-items:stretch;max-width:640px}
+.panel label{display:flex;flex-direction:column;justify-content:center;padding:8px 16px;min-width:0;border-radius:14px}
+.panel label + label{border-left:1px solid var(--line)}
+.panel label span{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.panel input,.panel select{border:0;outline:none;background:transparent;padding:3px 0 0;width:100%;min-width:0;font-weight:500}
+.panel .btn{border-radius:14px}
+@media (max-width:640px){.panel{grid-template-columns:1fr}.panel label + label{border-left:0;border-top:1px solid var(--line)}}
+.trust{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:28px;font-size:.88rem;color:rgba(255,255,255,.6)}
+.trust span{display:flex;align-items:center;gap:8px}
+.trust svg{width:16px;height:16px;color:var(--gold)}
+
+/* hero desk */
+.desk{position:relative;height:520px}
+@media (max-width:980px){.desk{height:470px;max-width:560px;width:100%;margin:0 auto}}
+@media (max-width:520px){.desk{height:430px}}
+.glass{position:absolute;background:rgba(255,255,255,.97);color:var(--ink);border-radius:20px;box-shadow:0 40px 80px -30px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.4);animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.c-main{left:6%;right:10%;top:56px;padding:22px}
+.c-main .top{display:flex;gap:14px;align-items:center}
+.avatar{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-weight:700;color:#fff;background:linear-gradient(145deg,#3b5be0,#16245e);flex:none}
+.c-main h4{font-size:1.08rem}
+.c-main .sub{color:var(--muted);font-size:.86rem}
+.match{margin-left:auto;text-align:right}
+.match strong{display:block;font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--ok)}
+.match small{font-size:.7rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tag{font-size:.76rem;font-weight:500;padding:5px 10px;border-radius:8px;background:var(--paper);border:1px solid var(--line)}
+.c-main .foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:.85rem;color:var(--muted);gap:10px;flex-wrap:wrap}
+.c-main .foot b{color:var(--ink)}
+.c-toast{right:0;top:0;padding:12px 16px;display:flex;gap:12px;align-items:center;animation-delay:-2s;max-width:270px}
+.c-toast .ic{width:34px;height:34px;border-radius:10px;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;flex:none}
+.c-toast b{display:block;font-size:.88rem}
+.c-toast small{color:var(--muted);font-size:.78rem}
+.c-pipe{left:0;bottom:24px;width:52%;padding:18px 20px;animation-delay:-4s}
+.c-pipe h5{margin:0 0 12px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.prow{display:grid;grid-template-columns:84px 1fr 26px;gap:10px;align-items:center;font-size:.84rem;margin-top:8px}
+.track{height:8px;border-radius:9px;background:var(--paper);overflow:hidden}
+.track b{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#3b5be0,#16245e);transform-origin:left;animation:grow 1.4s .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.prow span:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.c-interview{right:0;bottom:0;padding:16px 18px;width:42%;min-width:200px;animation-delay:-5s;background:linear-gradient(145deg,var(--gold-2),var(--gold));color:var(--gold-ink)}
+.c-interview small{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.75}
+.c-interview b{display:block;font-family:var(--f-display);font-size:1.5rem;font-weight:400;line-height:1.1;margin-top:4px}
+.c-interview p{font-size:.84rem;margin-top:6px}
+.desk-note{position:absolute;left:0;right:0;bottom:-30px;text-align:center;font-size:.74rem;color:rgba(255,255,255,.45)}
+@media (max-width:640px){
+  .desk{height:auto;display:grid;grid-template-columns:1fr;gap:14px}
+  .desk .glass{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:auto;min-width:0;max-width:none}
+  .c-toast{order:0;justify-self:end}
+  .c-main{order:1;padding:18px}
+  .c-interview{order:2}
+  .c-pipe{order:3}
+  .desk-note{position:static;order:4}
+  .match strong{font-size:1.6rem}
+}
+
+/* marquee */
+.sectors{background:var(--night-2);color:rgba(255,255,255,.75);border-top:1px solid var(--line-night);overflow:hidden}
+.sectors .wrap{display:flex;align-items:center;gap:28px;padding-block:20px}
+.sectors .label{flex:none;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);flex:1;min-width:0}
+.marquee-track{display:flex;gap:40px;width:max-content;animation:scroll 34s linear infinite}
+.marquee-track span{font-family:var(--f-display);font-size:1.35rem;white-space:nowrap;display:flex;align-items:center;gap:40px}
+.marquee-track span::after{content:"✦";font-size:.8rem;color:var(--gold)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@media (max-width:640px){.sectors .label{display:none}}
+
+/* sections */
+section.sec{padding-block:96px}
+@media (max-width:700px){section.sec{padding-block:68px}}
+.sec-head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:40px}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr}}
+.sec-head .kicker{color:var(--royal)}
+.sec-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2.4rem, 5vw, 3.8rem);margin-top:14px;line-height:1}
+.sec-head h2 em{font-style:italic;color:var(--royal)}
+.sec-head p{color:var(--muted);max-width:44ch}
+
+/* why band */
+.why{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.why > div{padding:30px 26px;min-width:0}
+.why > div + div{border-left:1px solid var(--line)}
+.why strong{display:block;font-family:var(--f-display);font-weight:400;font-size:2.8rem;line-height:1;color:var(--ink)}
+.why strong sup{font-size:1rem;color:var(--royal);font-family:var(--f-body);font-weight:600;margin-left:2px}
+.why p{margin-top:10px;color:var(--muted);font-size:.93rem}
+@media (max-width:900px){.why{grid-template-columns:1fr 1fr}.why > div:nth-child(3){border-left:0}.why > div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:480px){.why{grid-template-columns:1fr}.why > div + div{border-left:0;border-top:1px solid var(--line)}}
+
+/* jobs */
+.jobs-tools{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:22px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 16px;font-size:.88rem;font-weight:500;cursor:pointer;transition:all .2s}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sample{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:var(--amber-soft);padding:6px 12px;border-radius:999px}
+.joblist{background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.jobrow{display:grid;grid-template-columns:56px minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) auto;gap:20px;align-items:center;padding:22px 26px;border-bottom:1px solid var(--line);transition:background .2s}
+.jobrow:last-child{border-bottom:0}
+.jobrow:hover{background:#fafbfe}
+.jobrow:hover .go{background:var(--ink);color:#fff;border-color:var(--ink)}
+.jicon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:var(--royal-soft);color:var(--royal)}
+.jicon svg{width:24px;height:24px}
+.jt h3{font-size:1.12rem;font-weight:600;letter-spacing:-.01em}
+.jt .mono{color:var(--muted);display:block;margin-top:2px}
+.jmeta{font-size:.9rem;color:var(--muted);display:grid;gap:2px}
+.jmeta b{color:var(--ink);font-weight:500}
+.jpay{font-weight:600;font-variant-numeric:tabular-nums}
+.jpay small{display:block;color:var(--muted);font-weight:400;font-size:.8rem}
+.go{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:10px 18px;font-weight:600;font-size:.9rem;cursor:pointer;display:flex;gap:8px;align-items:center;transition:all .2s}
+.go svg{width:14px;height:14px}
+.new{display:inline-block;margin-left:8px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);background:var(--ok-soft);padding:3px 8px;border-radius:6px;vertical-align:middle}
+@media (max-width:860px){
+  .jobrow{grid-template-columns:48px minmax(0,1fr) auto;gap:14px;padding:18px}
+  .jicon{width:48px;height:48px;border-radius:14px}
+  .jobrow .jmeta,.jobrow .jpay{grid-column:2 / 4}
+  .jobrow .jmeta{grid-row:2;display:flex;flex-wrap:wrap;gap:4px 14px}
+  .jobrow .jpay{grid-row:3}
+  .go{grid-column:3;grid-row:1}
+}
+@media (max-width:420px){.go span{display:none}.go{padding:10px 12px}}
+.nojobs{padding:40px;text-align:center;color:var(--muted)}
+
+/* employers */
+.employ{background:var(--night);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+.employ::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 60% at 0% 0%, rgba(43,73,201,.45), transparent 70%),radial-gradient(40% 50% at 100% 100%, rgba(226,173,69,.14), transparent 70%)}
+.employ .sec-head .kicker{color:var(--gold)}
+.employ .sec-head h2 em{color:var(--gold-2)}
+.employ .sec-head p{color:rgba(255,255,255,.65)}
+.emp-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start}
+@media (max-width:940px){.emp-grid{grid-template-columns:1fr}}
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:t}
+.timeline li{display:grid;grid-template-columns:52px 1fr;gap:18px;padding-bottom:28px;position:relative;counter-increment:t}
+.timeline li::before{content:counter(t, decimal-leading-zero);font-family:var(--f-mono);font-size:.82rem;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,173,69,.6);color:var(--gold-2);display:grid;place-items:center;background:var(--night)}
+.timeline li::after{content:"";position:absolute;left:22px;top:46px;bottom:0;width:1px;background:linear-gradient(var(--line-night),transparent)}
+.timeline li:last-child::after{display:none}
+.timeline h4{font-size:1.15rem;font-weight:600;margin-top:10px}
+.timeline p{color:rgba(255,255,255,.65);margin-top:6px;font-size:.95rem}
+.formcard{background:var(--white);color:var(--ink);border-radius:26px;padding:30px;box-shadow:0 50px 100px -40px rgba(0,0,0,.7)}
+.formcard h3{font-family:var(--f-display);font-weight:400;font-size:2rem}
+.formcard .hint{color:var(--muted);font-size:.92rem;margin-top:6px}
+.fields{display:grid;gap:14px;margin-top:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+.f{position:relative;min-width:0}
+.f input,.f select,.f textarea{width:100%;border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:22px 14px 8px;outline:none;transition:border .2s, background .2s}
+.f textarea{min-height:96px;resize:vertical}
+.f label{position:absolute;left:15px;top:8px;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);pointer-events:none}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--royal);background:var(--white)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.88rem;cursor:pointer;transition:all .2s;background:var(--white)}
+.chips input:checked + label{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chips input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+.fieldset-label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+.success{display:grid;gap:12px;justify-items:center;text-align:center;padding:30px 10px}
+.success .tick{width:64px;height:64px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center}
+.success .tick svg{width:30px;height:30px}
+.success h3{font-family:var(--f-display);font-weight:400;font-size:2rem}
+.success p{color:var(--muted);max-width:38ch}
+
+/* dashboard */
+.browser{background:var(--white);border:1px solid var(--line);border-radius:22px;box-shadow:0 60px 120px -60px rgba(13,20,49,.45);overflow:hidden}
+.chrome{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:#fbfbfd}
+.dots{display:flex;gap:6px}.dots i{width:11px;height:11px;border-radius:50%;background:#e2e5ee;display:block}
+.url{flex:1;max-width:420px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:6px 12px;font-size:.8rem;color:var(--muted);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.app{display:grid;grid-template-columns:210px 1fr;min-height:520px}
+@media (max-width:900px){.app{grid-template-columns:1fr}}
+.side{background:var(--night);color:rgba(255,255,255,.75);padding:20px 14px;display:grid;align-content:start;gap:4px}
+@media (max-width:900px){.side{display:flex;overflow-x:auto;gap:6px;padding:12px}}
+.side .brandmini{display:flex;align-items:center;gap:10px;color:#fff;font-weight:600;margin:0 6px 18px}
+@media (max-width:900px){.side .brandmini{display:none}}
+.side .brandmini i{width:28px;height:28px;border-radius:8px;background:linear-gradient(145deg,var(--gold-2),var(--gold));display:grid;place-items:center;color:var(--gold-ink);font-family:var(--f-display);font-style:italic}
+.side a{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:10px;font-size:.9rem;white-space:nowrap;gap:12px}
+.side a.on{background:rgba(255,255,255,.1);color:#fff}
+.side a span{font-size:.75rem;background:rgba(255,255,255,.12);border-radius:6px;padding:1px 7px}
+.main{padding:22px;min-width:0;background:var(--paper)}
+.main-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}
+.main-top h4{font-size:1.2rem}
+.main-top small{color:var(--muted);font-size:.85rem;display:block;font-weight:400}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+@media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi small{font-size:.76rem;color:var(--muted)}
+.kpi strong{display:block;font-size:1.6rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.kpi em{font-style:normal;font-size:.75rem;color:var(--ok);font-weight:600}
+.board{display:grid;grid-template-columns:repeat(4,minmax(200px,1fr));gap:12px;overflow-x:auto;padding-bottom:4px}
+.col{background:#eef0f6;border-radius:14px;padding:10px;display:grid;gap:8px;align-content:start;min-width:0}
+.col-h{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;font-weight:600;padding:4px 6px}
+.col-h .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px}
+.col-h span:last-child{color:var(--muted);font-variant-numeric:tabular-nums}
+.card{background:var(--white);border-radius:12px;padding:12px;border:1px solid var(--line);display:grid;gap:8px;cursor:pointer;transition:transform .2s, box-shadow .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(13,20,49,.35)}
+.card .who{display:flex;gap:10px;align-items:center}
+.card .av{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:.75rem;font-weight:700;flex:none}
+.card b{font-size:.88rem;display:block;line-height:1.2}
+.card small{font-size:.76rem;color:var(--muted)}
+.card .ft{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted)}
+.card .cvbadge{color:var(--royal);font-weight:600}
+.dash-note{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center}
+
+/* cta */
+.cta{padding-block:20px 96px}
+.cta-box{position:relative;overflow:hidden;border-radius:32px;background:linear-gradient(135deg,var(--gold-2) 0%,var(--gold) 60%,#c98e22 100%);color:var(--gold-ink);padding:64px 48px;display:grid;grid-template-columns:1.4fr auto;gap:30px;align-items:center}
+@media (max-width:800px){.cta-box{grid-template-columns:1fr;padding:44px 26px}}
+.cta-box::after{content:"RC";position:absolute;right:-20px;bottom:-90px;font-family:var(--f-display);font-style:italic;font-size:22rem;line-height:1;opacity:.09;pointer-events:none}
+.cta-box h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1}
+.cta-box p{margin-top:14px;max-width:46ch;opacity:.8}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+
+/* contact + footer */
+footer{background:var(--night);color:rgba(255,255,255,.7)}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;padding-block:64px 40px}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid h5{margin:0 0 14px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.foot-grid p,.foot-grid a{font-size:.93rem;display:block;line-height:1.7;overflow-wrap:anywhere}
+.foot-grid a:hover{color:#fff}
+.foot-about{margin-top:16px;max-width:34ch}
+.base{border-top:1px solid var(--line-night)}
+.base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:22px;font-size:.84rem;color:rgba(255,255,255,.45)}
+
+.wa{position:fixed;right:calc(20px + env(safe-area-inset-right, 0px));bottom:calc(20px + env(safe-area-inset-bottom, 0px));z-index:45;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);transition:transform .2s}
+.wa:hover{transform:scale(1.06)}
+.wa svg{width:28px;height:28px}
+
+/* drawer */
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(6,10,26,.55);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s}
+.scrim.open{opacity:1}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(480px,100%);background:var(--white);box-shadow:-30px 0 80px -30px rgba(0,0,0,.5);transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top, 0px);padding-bottom:env(safe-area-inset-bottom, 0px);padding-right:env(safe-area-inset-right, 0px)}
+.drawer.open{transform:none}
+.drawer-head{padding:26px 26px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;align-items:start}
+.drawer-head .mono{color:var(--royal)}
+.drawer-head h3{font-family:var(--f-display);font-weight:400;font-size:2rem;margin-top:6px}
+.drawer-head p{color:var(--muted);font-size:.9rem;margin-top:4px}
+.x{border:1px solid var(--line);background:var(--white);border-radius:12px;width:40px;height:40px;cursor:pointer;flex:none;display:grid;place-items:center}
+.x svg{width:16px;height:16px}
+.drawer-body{padding:22px 26px 30px;overflow:auto;flex:1}
+.drop{border:1.5px dashed #c7cde0;border-radius:16px;padding:24px;text-align:center;background:var(--paper);cursor:pointer;transition:all .2s;display:grid;gap:6px;justify-items:center}
+.drop:hover,.drop.drag{border-color:var(--royal);background:var(--royal-soft)}
+.drop svg{width:28px;height:28px;color:var(--royal)}
+.drop b{font-size:.95rem}
+.drop small{color:var(--muted);font-size:.8rem}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.drop.has{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="ribbon"><div class="wrap">Website preview designed for Rapid Career Employment Agency by CodeWithFred. Jobs, candidates and figures shown are sample data.</div></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Rapid Career home"><span class="brand-mark">R</span><span><b>Rapid Career</b><small>Employment Agency</small></span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#jobs">Find jobs</a><a href="#employers">Hire talent</a><a href="#dashboard">How we work</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-line" href="#jobs">Browse jobs</a>
+    <a class="btn btn-gold" href="#employers">Hire staff</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><b>Since 2012</b> Recruitment and staffing, Victoria Island</span>
+      <h1>The right people.<br>The right roles.<br><em>Rapidly.</em></h1>
+      <p class="lede">Rapid Career connects Lagos employers with screened, ready to work talent, and helps job seekers land roles that fit their skills. Permanent, contract and temporary staffing under one roof.</p>
+
+      <div class="switch" id="switch" role="tablist" aria-label="Choose what you need" data-mode="find">
+        <span class="thumb" aria-hidden="true"></span>
+        <button role="tab" aria-selected="true" data-mode="find" type="button">Find work</button>
+        <button role="tab" aria-selected="false" data-mode="hire" type="button">Hire staff</button>
+      </div>
+
+      <form class="panel" id="findPanel" role="search">
+        <label for="q"><span>Job title or skill</span><input id="q" type="search" placeholder="Sales, accountant, driver"></label>
+        <label for="loc"><span>Location</span>
+          <select id="loc"><option value="">All of Lagos</option><option>Victoria Island</option><option>Lekki</option><option>Ikeja</option><option>Ikoyi</option><option>Apapa</option></select>
+        </label>
+        <button class="btn btn-night" type="submit">Search jobs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+      <form class="panel" id="hirePanel" hidden>
+        <label for="hRole"><span>Role you need</span><input id="hRole" placeholder="e.g. 5 sales executives"></label>
+        <label for="hType"><span>Engagement</span>
+          <select id="hType"><option>Permanent</option><option>Contract</option><option>Temporary</option></select>
+        </label>
+        <button class="btn btn-night" type="submit">Start brief <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Registered Nigerian business</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>13 years placing talent</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Office on Adeyemo Alakija, VI</span>
+      </div>
+    </div>
+
+    <div class="desk" aria-label="Example of a candidate moving through Rapid Career's process">
+      <div class="glass c-toast">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg></span>
+        <span><b>Shortlist sent</b><small>3 CVs delivered to employer</small></span>
+      </div>
+      <div class="glass c-main">
+        <div class="top">
+          <span class="avatar">AO</span>
+          <div><h4>Adaeze O.</h4><p class="sub">Sales Executive · 4 yrs FMCG</p></div>
+          <div class="match"><strong>94%</strong><small>Role match</small></div>
+        </div>
+        <div class="tags"><span class="tag">B2B sales</span><span class="tag">Key accounts</span><span class="tag">Lekki based</span><span class="tag">Available now</span></div>
+        <div class="foot"><span>Applied for <b>RC‑0241</b></span><span>CV verified · References checked</span></div>
+      </div>
+      <div class="glass c-pipe">
+        <h5>This week's pipeline</h5>
+        <div class="prow"><span>Applied</span><div class="track"><b style="width:100%"></b></div><span>48</span></div>
+        <div class="prow"><span>Shortlisted</span><div class="track"><b style="width:44%"></b></div><span>21</span></div>
+        <div class="prow"><span>Interview</span><div class="track"><b style="width:19%"></b></div><span>9</span></div>
+        <div class="prow"><span>Placed</span><div class="track"><b style="width:9%;background:linear-gradient(90deg,#2fbf7c,#1c8a5a)"></b></div><span>4</span></div>
+      </div>
+      <div class="glass c-interview">
+        <small>Interview booked</small>
+        <b>Thu, 10:00 am</b>
+        <p>Client office, Victoria Island</p>
+      </div>
+      <p class="desk-note">Illustration with sample data</p>
+    </div>
+  </div>
+</section>
+
+<div class="sectors" aria-label="Sectors we recruit for">
+  <div class="wrap">
+    <span class="label">We staff</span>
+    <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="why">
+      <div><strong>2012</strong><p>Founded in Lagos. Thirteen years of matching people with employers.</p></div>
+      <div><strong>3<sup>ways</sup></strong><p>Permanent, contract and temporary staffing, depending on what you need.</p></div>
+      <div><strong>1<sup>contact</sup></strong><p>A single recruiter manages your brief from first call to placement.</p></div>
+      <div><strong>VI</strong><p>Meet us at our office on Adeyemo Alakija, Victoria Island.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="jobs" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Open vacancies</span><h2>Your next role is <em>already here.</em></h2></div>
+      <p>Apply in two minutes from your phone. No account needed, just your CV.</p>
+    </div>
+    <div class="jobs-tools">
+      <div class="tabs" id="tabs" role="group" aria-label="Filter by sector"></div>
+      <span class="sample">Sample listings</span>
+    </div>
+    <div class="joblist" id="joblist" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="sec employ" id="employers">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">For employers</span><h2>Tell us who you need. <em>We'll find them.</em></h2></div>
+      <p>From one front desk officer to a full field sales team. Send a brief and a recruiter takes it from there.</p>
+    </div>
+    <div class="emp-grid">
+      <ol class="timeline">
+        <li><div><h4>Send your brief</h4><p>Roles, headcount, budget and start date. Two minutes with the form.</p></div></li>
+        <li><div><h4>We search and screen</h4><p>We match your brief against our candidate pool and verify CVs and references.</p></div></li>
+        <li><div><h4>Receive a shortlist</h4><p>The strongest candidates, with CVs and recruiter notes, straight to your inbox.</p></div></li>
+        <li><div><h4>Interview and hire</h4><p>We schedule interviews, collect feedback and support you through the offer.</p></div></li>
+      </ol>
+      <form class="formcard" id="empForm" novalidate>
+        <div id="empFields">
+          <h3>Staff request</h3>
+          <p class="hint">A recruiter replies within one working day.</p>
+          <div class="fields">
+            <div class="two">
+              <div class="f"><input id="eCo" required placeholder=" "><label for="eCo">Company</label></div>
+              <div class="f"><input id="eName" required placeholder=" "><label for="eName">Your name</label></div>
+            </div>
+            <div class="two">
+              <div class="f"><input id="ePhone" type="tel" required placeholder=" "><label for="ePhone">Phone</label></div>
+              <div class="f"><input id="eMail" type="email" placeholder=" "><label for="eMail">Work email</label></div>
+            </div>
+            <div class="f"><input id="eRole" required placeholder=" "><label for="eRole">Role(s) and headcount</label></div>
+            <div>
+              <span class="fieldset-label">Engagement</span>
+              <div class="chips">
+                <input type="radio" name="eng" id="eng1" checked><label for="eng1">Permanent</label>
+                <input type="radio" name="eng" id="eng2"><label for="eng2">Contract</label>
+                <input type="radio" name="eng" id="eng3"><label for="eng3">Temporary</label>
+              </div>
+            </div>
+            <div class="f"><textarea id="eNote" placeholder=" "></textarea><label for="eNote">Location, budget, start date</label></div>
+            <button class="btn btn-gold" type="submit" style="width:100%">Send staff request</button>
+          </div>
+        </div>
+        <div class="success" id="empDone" hidden>
+          <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg></span>
+          <h3>Brief received</h3>
+          <p>On the live site this lands in Rapid Career's dashboard and inbox instantly. This preview doesn't send anything.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="dashboard">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Your private dashboard</span><h2>Every CV. Every client. <em>One screen.</em></h2></div>
+      <p>No more CVs scattered across WhatsApp and email. Your team posts jobs, reviews applicants and moves them to placement here.</p>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="url">rapidcareer.com.ng/dashboard</span></div>
+      <div class="app">
+        <nav class="side" aria-label="Dashboard menu (illustration)">
+          <span class="brandmini"><i>R</i>Recruiter desk</span>
+          <a class="on" href="#dashboard">Pipeline <span>34</span></a>
+          <a href="#dashboard">Vacancies <span>6</span></a>
+          <a href="#dashboard">Employer briefs <span>4</span></a>
+          <a href="#dashboard">CV database</a>
+          <a href="#dashboard">Settings</a>
+        </nav>
+        <div class="main">
+          <div class="main-top"><h4>Good morning, Mrs Salami<small>Here's where every candidate stands today.</small></h4><button class="btn btn-night" type="button" style="padding:10px 18px;font-size:.88rem">+ Post vacancy</button></div>
+          <div class="kpis">
+            <div class="kpi"><small>Open vacancies</small><strong>6</strong></div>
+            <div class="kpi"><small>CVs this week</small><strong>48</strong><em>+12 vs last week</em></div>
+            <div class="kpi"><small>Employer briefs</small><strong>4</strong></div>
+            <div class="kpi"><small>Placed this month</small><strong>4</strong></div>
+          </div>
+          <div class="board" id="board"></div>
+          <p class="dash-note">Illustration with sample candidates. Tap a card to move it to the next stage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-box">
+      <div><h2>Hiring, or ready for your next role?</h2><p>Visit our office in Victoria Island, call us, or start online today. We'll take it from there.</p></div>
+      <div class="cta-actions"><a class="btn btn-night" href="#employers">Hire staff</a><a class="btn btn-ink-line" href="#jobs">Find a job</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="wrap foot-grid">
+    <div>
+      <span class="brand"><span class="brand-mark">R</span><span><b>Rapid Career</b><small>Employment Agency</small></span></span>
+      <p class="foot-about">Whether you are in search of work or hiring talent and teams, we are in the business of connecting people. Since 2012.</p>
+    </div>
+    <div><h5>Visit</h5><p>Suite A &amp; B, top floor<br>Nut Compound, Adeyemo Alakija<br>Victoria Island, Lagos</p></div>
+    <div><h5>Talk to us</h5><p>0812 751 5608</p><p>salamimariam270@gmail.com</p></div>
+    <div><h5>Explore</h5><a href="#jobs">Find jobs</a><a href="#employers">Hire staff</a><a href="#dashboard">How we work</a></div>
+  </div>
+  <div class="base"><div class="wrap"><span>© 2026 Rapid Career Employment Agency</span><span>Preview designed by CodeWithFred · codewithfred.com.ng</span></div></div>
+</footer>
+
+<a class="wa" href="https://wa.me/2348127515608" target="_blank" rel="noopener" aria-label="Chat with Rapid Career on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg></a>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" hidden>
+  <div class="drawer-head">
+    <div><span class="mono" id="dRef">RC‑0000</span><h3 id="dTitle">Role</h3><p id="dMeta"></p></div>
+    <button class="x" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer-body">
+    <form id="applyForm" novalidate>
+      <div id="applyFields" class="fields" style="margin-top:0">
+        <div class="f"><input id="aName" required placeholder=" "><label for="aName">Full name</label></div>
+        <div class="two">
+          <div class="f"><input id="aPhone" type="tel" required placeholder=" "><label for="aPhone">Phone</label></div>
+          <div class="f"><input id="aMail" type="email" placeholder=" "><label for="aMail">Email</label></div>
+        </div>
+        <label class="drop" id="drop" for="aCv">
+          <input id="aCv" type="file" accept=".pdf,.doc,.docx">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+          <b id="dropText">Upload your CV</b>
+          <small id="dropSub">PDF or Word, up to 5MB. Tap to choose or drag it here.</small>
+        </label>
+        <div class="f"><textarea id="aNote" placeholder=" "></textarea><label for="aNote">Short note (optional)</label></div>
+        <button class="btn btn-gold" type="submit" style="width:100%">Submit application</button>
+        <p style="font-size:.8rem;color:var(--muted);text-align:center">Your details go only to Rapid Career's recruitment team.</p>
+      </div>
+      <div class="success" id="applyDone" hidden>
+        <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg></span>
+        <h3>Application sent</h3>
+        <p>On the live site your CV appears in Rapid Career's dashboard instantly and you get a confirmation email. This preview doesn't send anything.</p>
+        <button class="btn btn-ink-line" type="button" data-close>Back to jobs</button>
+      </div>
+    </form>
+  </div>
+</aside>
+
+<script>
+const ICONS = {
+  Sales:'<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>',
+  Admin:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h4"/>',
+  Finance:'<circle cx="12" cy="12" r="9"/><path d="M8 10h8M8 14h8M10 6v12M14 6v12"/>',
+  Logistics:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>',
+  Hospitality:'<path d="M4 18h16M6 18a6 6 0 0112 0"/><path d="M12 8v4M10 8h4"/>'
+};
+const JOBS = [
+  {ref:"RC‑0241", title:"Sales Executive", sector:"Sales", loc:"Victoria Island", type:"Full time", pay:"₦180k – ₦250k", posted:"2 days ago", isNew:true},
+  {ref:"RC‑0238", title:"Front Desk Officer", sector:"Admin", loc:"Lekki", type:"Full time", pay:"₦120k – ₦150k", posted:"3 days ago", isNew:true},
+  {ref:"RC‑0236", title:"Accounts Officer", sector:"Finance", loc:"Ikeja", type:"Full time", pay:"₦220k – ₦300k", posted:"4 days ago"},
+  {ref:"RC‑0233", title:"Executive Driver", sector:"Logistics", loc:"Ikoyi", type:"Full time", pay:"₦150k – ₦180k", posted:"5 days ago"},
+  {ref:"RC‑0230", title:"Hotel Receptionist", sector:"Hospitality", loc:"Victoria Island", type:"Contract", pay:"₦130k – ₦160k", posted:"1 week ago"},
+  {ref:"RC‑0227", title:"Warehouse Supervisor", sector:"Logistics", loc:"Apapa", type:"Full time", pay:"₦200k – ₦260k", posted:"1 week ago"}
+];
+const STAGES = [["new","New","#2a63d8"],["short","Shortlisted","#e2ad45"],["int","Interview","#7a4fd6"],["placed","Placed","#1c8a5a"]];
+const CANDS = [
+  {n:"Adaeze O.", r:"Sales Executive", s:"new", c:"#3b5be0"},
+  {n:"Tunde A.", r:"Accounts Officer", s:"new", c:"#0f766e"},
+  {n:"Kemi L.", r:"Front Desk Officer", s:"new", c:"#b45309"},
+  {n:"Bisola K.", r:"Front Desk Officer", s:"short", c:"#be185d"},
+  {n:"Chiamaka E.", r:"Hotel Receptionist", s:"short", c:"#6d28d9"},
+  {n:"Ibrahim M.", r:"Executive Driver", s:"int", c:"#1d4ed8"},
+  {n:"Ngozi U.", r:"Sales Executive", s:"int", c:"#047857"},
+  {n:"Segun F.", r:"Warehouse Supervisor", s:"placed", c:"#9a3412"}
+];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const initials = n => n.split(/\s+/).map(p => p[0]).join("").slice(0,2);
+
+/* nav background */
+const nav = document.getElementById("nav");
+const onScroll = () => nav.classList.toggle("solid", window.scrollY > 40);
+onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+
+/* marquee */
+const sectorsList = ["Sales and marketing","Banking and finance","Hospitality","Logistics and drivers","Administration","FMCG","Retail","Domestic and executive staff","Facility management","Customer service"];
+document.getElementById("marquee").innerHTML = [...sectorsList, ...sectorsList].map(s => `<span>${esc(s)}</span>`).join("");
+
+/* hero switch */
+const sw = document.getElementById("switch");
+sw.addEventListener("click", e => {
+  const b = e.target.closest("button[data-mode]"); if (!b) return;
+  const mode = b.dataset.mode; sw.dataset.mode = mode;
+  sw.querySelectorAll("button").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.getElementById("findPanel").hidden = mode !== "find";
+  document.getElementById("hirePanel").hidden = mode !== "hire";
+});
+document.getElementById("hirePanel").addEventListener("submit", e => {
+  e.preventDefault();
+  document.getElementById("eRole").value = document.getElementById("hRole").value;
+  const t = document.getElementById("hType").value;
+  document.getElementById(t==="Contract"?"eng2":t==="Temporary"?"eng3":"eng1").checked = true;
+  document.getElementById("employers").scrollIntoView({behavior:"smooth"});
+  setTimeout(() => document.getElementById("eCo").focus({preventScroll:true}), 600);
+});
+
+/* jobs */
+let sector = "All", query = "", place = "";
+const tabs = document.getElementById("tabs");
+tabs.innerHTML = ["All", ...new Set(JOBS.map(j => j.sector))].map(s => `<button class="tab" type="button" data-s="${esc(s)}" aria-pressed="${s==="All"}">${esc(s)}</button>`).join("");
+tabs.addEventListener("click", e => {
+  const b = e.target.closest(".tab"); if (!b) return;
+  sector = b.dataset.s;
+  tabs.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-pressed", t === b));
+  renderJobs();
+});
+function renderJobs(){
+  const q = query.trim().toLowerCase();
+  const list = JOBS.filter(j => (sector==="All"||j.sector===sector) && (!place||j.loc===place) && (!q||(j.title+" "+j.sector).toLowerCase().includes(q)));
+  document.getElementById("joblist").innerHTML = list.length ? list.map(j => `
+    <div class="jobrow">
+      <span class="jicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[j.sector]}</svg></span>
+      <div class="jt"><h3>${esc(j.title)}${j.isNew?'<span class="new">New</span>':''}</h3><span class="mono">${j.ref} · ${esc(j.sector)}</span></div>
+      <div class="jmeta"><b>${esc(j.loc)}</b><span>${esc(j.type)} · ${esc(j.posted)}</span></div>
+      <div class="jpay">${esc(j.pay)}<small>per month</small></div>
+      <button class="go" type="button" data-apply="${j.ref}"><span>Apply</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>`).join("") : `<p class="nojobs">No open roles match that search right now. Send your CV anyway and we'll call you when one opens.</p>`;
+}
+renderJobs();
+document.getElementById("findPanel").addEventListener("submit", e => {
+  e.preventDefault();
+  query = document.getElementById("q").value; place = document.getElementById("loc").value;
+  renderJobs(); document.getElementById("jobs").scrollIntoView({behavior:"smooth"});
+});
+
+/* drawer */
+const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
+let lastFocus = null;
+function openDrawer(job){
+  document.getElementById("dRef").textContent = job.ref;
+  document.getElementById("dTitle").textContent = job.title;
+  document.getElementById("dMeta").textContent = `${job.loc} · ${job.type} · ${job.pay} per month`;
+  document.getElementById("applyFields").hidden = false;
+  document.getElementById("applyDone").hidden = true;
+  drawer.hidden = false; scrim.hidden = false;
+  requestAnimationFrame(() => { drawer.classList.add("open"); scrim.classList.add("open"); });
+  setTimeout(() => document.getElementById("aName").focus(), 350);
+}
+function closeDrawer(){
+  drawer.classList.remove("open"); scrim.classList.remove("open");
+  setTimeout(() => { drawer.hidden = true; scrim.hidden = true; }, 350);
+  lastFocus && lastFocus.focus();
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-apply]");
+  if (a){ lastFocus = a; openDrawer(JOBS.find(j => j.ref === a.dataset.apply)); }
+  if (e.target.closest("[data-close]") || e.target === scrim) closeDrawer();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !drawer.hidden) closeDrawer(); });
+const cv = document.getElementById("aCv"), drop = document.getElementById("drop");
+function showFile(f){ if (!f) return; drop.classList.add("has"); document.getElementById("dropText").textContent = f.name; document.getElementById("dropSub").textContent = "Ready to send · tap to change"; }
+cv.addEventListener("change", () => showFile(cv.files[0]));
+["dragenter","dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("drag"); }));
+["dragleave","drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("drag"); }));
+drop.addEventListener("drop", e => showFile(e.dataTransfer.files[0]));
+function need(id, msg){ const el = document.getElementById(id); if (!el.value.trim()){ el.setCustomValidity(msg); el.reportValidity(); el.setCustomValidity(""); el.focus(); return false; } return true; }
+document.getElementById("applyForm").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!need("aName","Enter your full name") || !need("aPhone","Enter a phone number we can call")) return;
+  document.getElementById("applyFields").hidden = true;
+  document.getElementById("applyDone").hidden = false;
+});
+document.getElementById("empForm").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!need("eCo","Enter your company name") || !need("eName","Enter your name") || !need("ePhone","Enter a phone number") || !need("eRole","Tell us the role you need")) return;
+  document.getElementById("empFields").hidden = true;
+  document.getElementById("empDone").hidden = false;
+});
+
+/* kanban */
+function renderBoard(){
+  document.getElementById("board").innerHTML = STAGES.map(([k,label,color]) => {
+    const items = CANDS.filter(c => c.s === k);
+    return `<div class="col"><div class="col-h"><span><i class="dot" style="background:${color}"></i>${label}</span><span>${items.length}</span></div>
+      ${items.map(c => `<button class="card" type="button" data-move="${esc(c.n)}" aria-label="Move ${esc(c.n)} to the next stage">
+        <span class="who"><span class="av" style="background:${c.c}">${esc(initials(c.n))}</span><span><b>${esc(c.n)}</b><small>${esc(c.r)}</small></span></span>
+        <span class="ft"><span class="cvbadge">CV attached</span><span>${label === "Placed" ? "Started Mon" : "Today"}</span></span>
+      </button>`).join("")}</div>`;
+  }).join("");
+}
+document.getElementById("board").addEventListener("click", e => {
+  const b = e.target.closest("[data-move]"); if (!b) return;
+  const c = CANDS.find(x => x.n === b.dataset.move);
+  const i = STAGES.findIndex(s => s[0] === c.s);
+  if (i < STAGES.length - 1){ c.s = STAGES[i+1][0]; renderBoard(); }
+});
+renderBoard();
+</script>
+</body>
+</html>
